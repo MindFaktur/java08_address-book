@@ -49,3 +49,5 @@ class ContactDetails {
 		Contacts.put(full_name,details);
 	}
 }
+
+//added contacts
