@@ -1,53 +1,167 @@
 import java.util.*;
 
-class ContactData {
-    public static String first_name, last_name, address, city, state,	zip, phone_number, full_name, email;
-    public static HashMap <String, HashMap<String,String>> contactsMap = new HashMap<>();
+class ContactData implements interfaceData{
+    userInputs userInputsObject = new userInputs();
     AddressBook scanObject = new AddressBook();
+    static HashMap <String, HashMap<String,String>> contactsMap = new HashMap<>();
 
     public void addContact(){
 
-        System.out.println(" Please enter the First name to add details ");
-        first_name = scanObject.scan.nextLine();
-        System.out.println(" Please enter the last name to add details ");
-        last_name = scanObject.scan.nextLine();
+        System.out.println(" Please enter the Full name to add details ");
+        userInputsObject.setFull_name(scanObject.scan.nextLine());
+
         System.out.println(" Please enter the address to add details ");
-        address = scanObject.scan.nextLine();
+        userInputsObject.setAddress(scanObject.scan.nextLine());
+
         System.out.println(" Please enter city to add details ");
-        city = scanObject.scan.nextLine();
+        userInputsObject.setCity(scanObject.scan.nextLine());
+
         System.out.println(" Please enter the state to add details ");
-        state = scanObject.scan.nextLine();
+        userInputsObject.setState(scanObject.scan.nextLine());
+
         System.out.println(" Please enter the zip code to add details ");
-        zip = scanObject.scan.nextLine();
+        userInputsObject.setZip(scanObject.scan.nextLine());
+
         System.out.println(" Please enter the phone number to add details ");
-        phone_number = scanObject.scan.nextLine();
+        userInputsObject.setPhone_number(scanObject.scan.nextLine());
+
         System.out.println(" Please enter the email id to add details ");
-        email = scanObject.scan.nextLine();
-        full_name = (first_name + " " + last_name);
+        userInputsObject.setEmail(scanObject.scan.nextLine());
 
         HashMap<String,String> details = new HashMap<>();
-        details.put("First Name",first_name);
-        details.put("Last Name",last_name);
-        details.put("Address",address);
-        details.put("City",city);
-        details.put("State",state);
-        details.put("Zip",zip);
-        details.put("Phone Number",phone_number);
-        details.put("Email-Id",email);
-        contactsMap.put(full_name, details);
+
+        details.put("Address",userInputsObject.getAddress());
+        details.put("City",userInputsObject.getCity());
+        details.put("State",userInputsObject.getState());
+        details.put("Zip",userInputsObject.getZip());
+        details.put("Phone Number",userInputsObject.getPhone_number());
+        details.put("Email-Id",userInputsObject.getEmail());
+        contactsMap.put(userInputsObject.getFull_name(), details);
     }
 
     public void changeAddress() {
         System.out.println(" Please enter name whose address you want to change ");
         String userName = scanObject.scan.nextLine();
+        int val = 0;
         for ( String name : contactsMap.keySet() ) {
             if(Objects.equals(userName, name)){
-                System.out.println(contactsMap.get(userName));
                 System.out.println(" Please enter new address ");
                 String userAddress = scanObject.scan.nextLine();
                 HashMap<String,String> tempList = contactsMap.get(userName);
                 tempList.replace("Address",userAddress);
-                System.out.println(contactsMap.get(userName));
+                val = 1;
+            }
+        }
+        if ( val == 0 ){
+            System.out.println(" The given name does not match any records ");
+        }
+    }
+
+    public void changeCity() {
+        System.out.println(" Please enter name whose city you want to change ");
+        String userName = scanObject.scan.nextLine();
+        int val = 0;
+        for ( String name : contactsMap.keySet() ) {
+            if(Objects.equals(userName, name)){
+                System.out.println(" Please enter new City name ");
+                String userCity = scanObject.scan.nextLine();
+                HashMap<String,String> tempList = contactsMap.get(userName);
+                tempList.replace("City",userCity);
+                val = 1;
+            }
+        }
+        if ( val == 0 ){
+            System.out.println(" The given name does not match any records ");
+        }
+    }
+
+    public void changeState() {
+        System.out.println(" Please enter name whose State you want to change ");
+        String userName = scanObject.scan.nextLine();
+        int val = 0;
+        for ( String name : contactsMap.keySet() ) {
+            if(Objects.equals(userName, name)){
+
+                System.out.println(" Please enter new State ");
+                String userState = scanObject.scan.nextLine();
+                HashMap<String,String> tempList = contactsMap.get(userName);
+                tempList.replace("State",userState);
+
+                val = 1;
+            }
+        }
+        if ( val == 0 ){
+            System.out.println(" The given name does not match any records ");
+        }
+    }
+
+    public void changeZip() {
+        System.out.println(" Please enter name whose Zip you want to change ");
+        String userName = scanObject.scan.nextLine();
+        int val = 0;
+        for ( String name : contactsMap.keySet() ) {
+            if(Objects.equals(userName, name)){
+
+                System.out.println(" Please enter new Zip ");
+                String userZip = scanObject.scan.nextLine();
+                HashMap<String,String> tempList = contactsMap.get(userName);
+                tempList.replace("Zip",userZip);
+
+                val = 1;
+            }
+        }
+        if ( val == 0 ){
+            System.out.println(" The given name does not match any records ");
+        }
+    }
+
+    public void changePhoneNumber() {
+        System.out.println(" Please enter name whose Phone Number you want to change ");
+        String userName = scanObject.scan.nextLine();
+        int val = 0;
+        for ( String name : contactsMap.keySet() ) {
+            if(Objects.equals(userName, name)){
+
+                System.out.println(" Please enter new Phone Number ");
+                String userNumber = scanObject.scan.nextLine();
+                HashMap<String,String> tempList = contactsMap.get(userName);
+                tempList.replace("PhoneNumber",userNumber);
+
+                val = 1;
+
+            }
+        }
+        if ( val == 0 ){
+            System.out.println(" The given name does not match any records ");
+        }
+    }
+
+    public void changeEmail() {
+        System.out.println(" Please enter name whose Email-Id you want to change ");
+        String userName = scanObject.scan.nextLine();
+        int val = 0;
+        for ( String name : contactsMap.keySet() ) {
+            if(Objects.equals(userName, name)){
+
+                System.out.println(" Please enter new Email-Id ");
+                String userEmail = scanObject.scan.nextLine();
+                HashMap<String,String> tempList = contactsMap.get(userName);
+                tempList.replace("Email-Id",userEmail);
+
+                val = 1;
+            }
+        }
+        if ( val == 0 ){
+            System.out.println(" The given name does not match any records ");
+        }
+    }
+
+    public void deleteContact() {
+        System.out.println(" Please enter name whose details you want to delete ");
+        String userName = scanObject.scan.nextLine();
+        for ( String name : contactsMap.keySet() ) {
+            if(Objects.equals(userName, name)){
+                contactsMap.remove(userName);
             }else{
                 System.out.println(" The given name does not match any records ");
             }
