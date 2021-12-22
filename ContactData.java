@@ -4,6 +4,8 @@ class ContactData implements interfaceData{
     userInputs userInputsObject = new userInputs();
     AddressBook scanObject = new AddressBook();
     static HashMap <String, HashMap<String,String>> contactsMap = new HashMap<>();
+    static HashMap <Integer,HashMap <String, HashMap<String,String>>> addressBooks = new HashMap<>();
+    static Integer count = 0;
 
     public void addContact(){
 
@@ -37,6 +39,9 @@ class ContactData implements interfaceData{
         details.put("Phone Number",userInputsObject.getPhone_number());
         details.put("Email-Id",userInputsObject.getEmail());
         contactsMap.put(userInputsObject.getFull_name(), details);
+
+        addressBooks.put(count,contactsMap);
+        count++;
     }
 
     public void changeAddress() {

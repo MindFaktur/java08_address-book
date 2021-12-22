@@ -5,6 +5,7 @@ public class AddressBook{
 	Scanner scan = new Scanner(System.in);
 	public static void main( String[] args ) {
 		Menu.menu();
+		System.out.println(ContactData.addressBooks);
 	}
 }
 
