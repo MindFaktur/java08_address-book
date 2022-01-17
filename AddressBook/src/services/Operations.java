@@ -25,8 +25,6 @@ public class Operations
         CD.mobNo = Inputs.getInput(" Mobile No ");
         CD.email = Inputs.getInput(" Email-ID ");
 
-
-
         if( AB.addToAddressBook(bookName,CD) )
         {
             System.out.println("Added to AdressBook");
@@ -37,10 +35,10 @@ public class Operations
 
     }
 
-    public void mainMenu(List<Contacts> listOfContacts)
+    public void mainMenu(List<Contacts> listOfContacts, String bookName)
     {
         int option = 0;
-        while ( option != 12 ) {
+        while ( option != 16 ) {
             AddressBook AB = AddressBook.getInstance();
             System.out.println(" Press " +
                     "\n 1) Print all Books " +
@@ -54,14 +52,18 @@ public class Operations
                     "\n 9) Delete Contact " +
                     "\n 10) Search By City " +
                     "\n 11) Search By State " +
-                    "\n 12) Quit "
+                    "\n 12) Sort By First Name " +
+                    "\n 13) Sort By City " +
+                    "\n 14) Sort By State " +
+                    "\n 15) Sort By Zip " +
+                    "\n 16) Quit "
             );
             option = Utilities.SC.nextInt();
-            editContact(option,listOfContacts);
+            editContact(option,listOfContacts,bookName);
         }
     }
 
-    public void editContact(int optionValue, List<Contacts> listOfContacts)
+    public void editContact(int optionValue, List<Contacts> listOfContacts,String bookName)
     {
         AddressBook AB = AddressBook.getInstance();
 
@@ -178,6 +180,22 @@ public class Operations
                 String stateName = Inputs.getInput("State name to filter");
                 searchState(stateName);
                 break;
+
+            case 12:
+                AB.sortedListByFirstName(bookName);
+                break;
+
+            case 13:
+                AB.sortedListByCity(bookName);
+                break;
+
+            case 14:
+                AB.sortedListByState(bookName);
+                break;
+
+            case 15:
+                AB.sortedListByZip(bookName);
+                break;
         }
     }
 
@@ -230,7 +248,7 @@ public class Operations
                 case 2:
                     String addressBookToEdit = Inputs.getInput(" Address Book name to Edit ");
                     List<Contacts> listOfContacts = AB.getContactList(addressBookToEdit);
-                    mainMenu(listOfContacts);
+                    mainMenu(listOfContacts,addressBookToEdit);
                     break;
                 case 3:
                     String addressBookToDelete = Inputs.getInput(" Address Book name to delete ");
