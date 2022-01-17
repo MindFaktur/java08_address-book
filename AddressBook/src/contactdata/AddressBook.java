@@ -2,6 +2,7 @@ package contactdata;
 
 import inputs.Inputs;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -78,5 +79,29 @@ public class AddressBook
     public List<Contacts> getContactList(String bookName)
     {
         return allAddressBooks.get(bookName);
+    }
+
+    public void sortedListByFirstName(String name){
+        List<Contacts> CD = allAddressBooks.get(name);
+        CD.sort((cd1, cd2) -> cd1.firstName.compareTo(cd2.firstName));
+        System.out.println(CD);
+    }
+
+    public void sortedListByCity(String name){
+        List<Contacts> CD = allAddressBooks.get(name);
+        CD.sort((cd1, cd2) -> cd1.city.compareTo(cd2.city));
+        System.out.println(CD);
+    }
+
+    public void sortedListByState(String name){
+        List<Contacts> CD = allAddressBooks.get(name);
+        CD.sort((cd1, cd2) -> cd1.state.compareTo(cd2.state));
+        System.out.println(CD);
+    }
+
+    public void sortedListByZip(String name){
+        List<Contacts> CD = allAddressBooks.get(name);
+        CD.sort((cd1, cd2) -> cd1.zip.compareTo(cd2.zip));
+        System.out.println(CD);
     }
 }
